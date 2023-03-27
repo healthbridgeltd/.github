@@ -1,0 +1,23 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: healthbridgeltd/.github
+    jenkins.io/job-full-name: ""
+    jira/component: ""
+    jira/project-key: ""
+    newrelic.com/dashboard-guid: ""
+    sonarqube.org/project-key: ""
+  description: Standard templates for github repos
+  links:
+  - title: Confluence Docs
+    url: https://zavamed.atlassian.net/wiki/spaces/TPF/pages/1305575425/
+  - title: C4 Component Diagram
+    url: https://zavamed.atlassian.net/wiki/spaces/ARCH/pages/2718041888/Ordoclic+Fulfilment+Service+Placeholder
+  name: .github
+  tags: []
+spec:
+  lifecycle: production
+  owner: architecture
+  type: service
