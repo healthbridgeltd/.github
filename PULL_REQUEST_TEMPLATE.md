@@ -35,7 +35,7 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 - [ ] New and existing unit tests pass locally with my changes
 
 ## Security
-- [ ] Any PII or clinical data displayed has been suppressed from screen recordings
+- [ ] PII or clinical data displayed by change will be suppressed from screen recording tools
 - [ ] Requires a security review  
 - [ ] Security review has been done
 
