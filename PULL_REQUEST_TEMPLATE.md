@@ -1,6 +1,8 @@
 <!---
 Please ensure that the PR Title starts with a reference to the Jira Issue 
 in the format: [TEAM-XYZ] pr title
+
+Please refer to https://zavamed.atlassian.net/wiki/spaces/DEV/pages/215679001/Code+Review+Guidelines for information on how to raise to PR for review
  -->
 
 ## Why?
