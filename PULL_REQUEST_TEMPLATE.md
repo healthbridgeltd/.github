@@ -1,6 +1,8 @@
 <!---
 Please ensure that the PR Title starts with a reference to the Jira Issue 
 in the format: [TEAM-XYZ] pr title
+
+Please refer to https://zavamed.atlassian.net/wiki/spaces/DEV/pages/215679001/Code+Review+Guidelines for information on how to raise a PR
  -->
 
 ## Why?
@@ -33,6 +35,7 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 - [ ] I have made corresponding changes to the documentation
 - [ ] I have added tests that prove my fix is effective or that my feature works
 - [ ] New and existing unit tests pass locally with my changes
+- [ ] I have made sure any GDPR changes necessary have been done
 
 ## Security
 - [ ] PII or clinical data displayed by change will be suppressed from screen recording tools
