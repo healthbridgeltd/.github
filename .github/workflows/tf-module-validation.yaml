@@ -1,0 +1,86 @@
+name: tf-module-validation
+
+on:
+  workflow_call:
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.5.2
+
+        
+      - name: Terraform init
+        run: |
+          terraform init    
+
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check -recursive
+
+      - uses: actions/github-script@v3.1.0
+        env:
+          FMT: "${{ steps.fmt.outputs.stdout }}"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `#### \`Terraform Format and Style\` 🖌${{ steps.fmt.outcome }}
+
+            <details><summary>Show Output</summary>
+
+            \`\`\`${process.env.FMT}\`\`\`
+
+            </details>`;
+
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
+
+      - name: Terraform validate
+        if: ${{ always() }}
+        uses: reviewdog/action-terraform-validate@v1.16.1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          fail_level: error
+          filter_mode: nofilter
+
+      - name: tflint
+        if: ${{ always() }}
+        uses: reviewdog/action-tflint@v1.24.2
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review 
+          fail_level: error 
+          tflint_init: true 
+          filter_mode: nofilter
+        
+      - name: Trivy config checks
+        if: ${{ always() }}
+        uses: reviewdog/action-trivy@v1.13.10
+        with:
+          github_token: ${{ secrets.github_token }}
+          trivy_command: config
+          trivy_target: .
+          reporter: github-pr-review 
+          fail_level: error 
+          filter_mode: nofilter   
+
+      - name: Failed steps
+        if: ${{ failure() }}
+        run: exit 1          
+
+    
