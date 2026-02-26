@@ -1,12 +1,14 @@
 name: PR Title Checker
 
-on: pull_request
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
 
 jobs:
   title-checker:
-    name: Check for Jira Ticket In Title
+    name: Check for Jira Ticket in title
     runs-on: ubuntu-latest
 
     steps:
-      - name: Enforce Jira Issue Key in Pull Request Title
+      - name: Enforce Jira Issue Key in Pull Request title
         uses: healthbridgeltd/enforce-pr-title-style-action@2
