@@ -11,4 +11,4 @@ jobs:
 
     steps:
       - name: Enforce Jira Issue Key in Pull Request title
-        uses: healthbridgeltd/enforce-pr-title-style-action@2
+        uses: zavamed/enforce-pr-title-style-action@2
